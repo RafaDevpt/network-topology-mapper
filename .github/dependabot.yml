@@ -1,0 +1,18 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/Network-Topology-Mapper/Linux"
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: "/Network-Topology-Mapper/Windows"
+    schedule:
+      interval: weekly
+  - package-ecosystem: pip
+    directory: "/Network-Topology-Mapper/macOS"
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
