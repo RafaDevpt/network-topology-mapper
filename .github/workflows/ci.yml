@@ -25,9 +25,9 @@ name: CI
 
 on:
   push:
-    branches: [Network-Topology-Mapper]
+    branches: [main]
   pull_request:
-    branches: [Network-Topology-Mapper]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
