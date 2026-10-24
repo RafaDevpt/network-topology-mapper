@@ -111,6 +111,9 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_mapear.add_argument("--excel", metavar="FICHEIRO", help="Onde escrever o Excel.")
     p_mapear.add_argument("--pdf", metavar="FICHEIRO", help="Onde escrever o PDF.")
+    p_mapear.add_argument(
+        "--json", metavar="FICHEIRO", help="Onde escrever o JSON (para o Network Twin 3D)."
+    )
     p_mapear.add_argument("--profundidade", type=int, metavar="N", help="Saltos máximos a partir das sementes.")
     p_mapear.add_argument("--max-equipamentos", type=int, metavar="N", dest="max_equipamentos")
     p_mapear.add_argument(
@@ -324,16 +327,18 @@ def _assemble(
 def _write_reports(
     args: argparse.Namespace, settings: Settings, topology: Topology, started: datetime
 ) -> None:
-    """PT-PT: Escreve o Excel e o PDF. / EN-UK: Writes the Excel and the PDF."""
+    """PT-PT: Escreve o Excel, o PDF e o JSON. / EN-UK: Writes the Excel, the PDF and the JSON."""
     carimbo = started.strftime("%Y%m%d-%H%M")
     pasta = settings.output_path
 
     caminho_excel = Path(args.excel) if args.excel else pasta / f"mapa-rede-{carimbo}.xlsx"
     caminho_pdf = Path(args.pdf) if args.pdf else pasta / f"mapa-rede-{carimbo}.pdf"
+    caminho_json = Path(args.json) if args.json else pasta / f"mapa-rede-{carimbo}.json"
 
     for escritor, caminho, nome in (
         (reports.write_excel, caminho_excel, "Excel"),
         (reports.write_pdf, caminho_pdf, "PDF"),
+        (reports.write_json, caminho_json, "JSON"),
     ):
         try:
             escrito = escritor(topology, caminho, started)

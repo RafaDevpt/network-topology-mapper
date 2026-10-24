@@ -77,4 +77,20 @@ def write_pdf(topology: Topology, path: Path, started: datetime | None = None) -
     return write(topology, path, started)
 
 
-__all__ = ["ReportError", "write_excel", "write_pdf"]
+def write_json(topology: Topology, path: Path, started: datetime | None = None) -> Path:
+    """
+    PT-PT: Escreve o mapa em JSON, para outros programas (ex.: Network Twin 3D).
+           Só usa a biblioteca-padrão, por isso não há dependência a apanhar.
+
+    EN-UK: Writes the map as JSON, for other programs (e.g. Network Twin 3D).
+           Standard library only, so there is no missing dependency to catch.
+    """
+    from .json_export import write
+
+    try:
+        return write(topology, path, started)
+    except OSError as exc:
+        raise ReportError(f"Não foi possível escrever o JSON em {path}: {exc}") from exc
+
+
+__all__ = ["ReportError", "write_excel", "write_json", "write_pdf"]

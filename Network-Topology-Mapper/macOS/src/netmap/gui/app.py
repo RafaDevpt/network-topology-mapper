@@ -179,6 +179,11 @@ class App(ctk.CTk):
         quiet_button(self._export, "Guardar PDF", self._save_pdf, width=120).pack(
             side="left", padx=theme.PAD_XS
         )
+        # PT-PT: O JSON é para o Network Twin 3D (vista 3D e validação).
+        # EN-UK: The JSON is for Network Twin 3D (3D view and validation).
+        quiet_button(self._export, "Guardar JSON", self._save_json, width=120).pack(
+            side="left", padx=theme.PAD_XS
+        )
 
     def _build_tabs(self) -> None:
         self.tabs = ctk.CTkTabview(
@@ -755,6 +760,9 @@ class App(ctk.CTk):
 
     def _save_pdf(self) -> None:
         self._save(reports.write_pdf, ".pdf", "PDF", [("PDF", "*.pdf")])
+
+    def _save_json(self) -> None:
+        self._save(reports.write_json, ".json", "JSON", [("JSON", "*.json")])
 
     def _save(
         self,
