@@ -14,7 +14,7 @@ description = "Mapeamento da rede do controlador ao equipamento final / Network 
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "Rafael Santos (Redfox)" }]
+authors = [{ name = "Redfox" }]
 keywords = ["networking", "topology", "lldp", "cdp", "mac-address-table", "unifi", "netmiko", "sysadmin"]
 classifiers = [
     "Development Status :: 4 - Beta",
